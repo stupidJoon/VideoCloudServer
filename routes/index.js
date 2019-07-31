@@ -22,10 +22,12 @@ router.post('/signup', (req, res) => {
   if ((!req.body['id'] || !req.body['pw']) || !req.body['username']) {
     res.json({'status': false, 'message': 'Authenticated failed'});
   }
-  bcyrpt.hash(req.body['pw'], bcryptSettings.saltRounds, (err, hash) => {
-    Users.signUp(req.body['id'], hash, req.body['username']);
-  });
-  res.json({'status': true});
+  else {
+    bcyrpt.hash(req.body['pw'], bcryptSettings.saltRounds, (err, hash) => {
+      Users.signUp(req.body['id'], hash, req.body['username']);
+    });
+    res.json({'status': true});
+  }
 });
 
 router.get('/status', (req, res) => {
