@@ -64,7 +64,8 @@
 ```json
 {
     "id": "testID",
-    "pw": "testPW"
+    "pw": "testPW",
+    "username": "testUsername"
 }
 ```
 

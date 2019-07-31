@@ -20,7 +20,7 @@ router.get('/signout', (req, res) => {
 
 router.post('/signup', (req, res) => {
   bcyrpt.hash(req.body['pw'], bcryptSettings.saltRounds, (err, hash) => {
-    Users.signUp(req.body['id'], hash);
+    Users.signUp(req.body['id'], hash, req.body['username']);
   });
   res.json({'status': true});
 });
