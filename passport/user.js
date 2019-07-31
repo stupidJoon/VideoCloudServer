@@ -6,18 +6,10 @@ var exports = module.exports = {};
 const pool = mysql.createPool({
   connectionLimit: 10,
   host: 'localhost',
-  user: 'user',
-  password: 'password',
-  database: 'database'
+  user: 'video_cloud',
+  password: 'video_cloud',
+  database: 'video_cloud'
 });
-
-// const pool = mysql.createPool({
-//   connectionLimit: 10,
-//   host: 'localhost',
-//   user: 'video_cloud',
-//   password: 'video_cloud',
-//   database: 'video_cloud'
-// });
 
 module.exports.findId = (id, cb) => {
   pool.query('SELECT id FROM user WHERE id=?', [id], (error, results, fields) => {
