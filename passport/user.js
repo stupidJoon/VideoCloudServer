@@ -30,7 +30,6 @@ module.exports.findId = (id, cb) => {
     }
   });
 };
-
 module.exports.findPw = (id, pw, cb) => {
   pool.query('SELECT * FROM user WHERE id=?', [id], (error, results, fields) => {
     if (error) cb(error, null);
@@ -45,13 +44,11 @@ module.exports.findPw = (id, pw, cb) => {
     });
   });
 };
-
 module.exports.signUp = (id, pw, username) => {
   pool.query('INSERT INTO user VALUES (?, ?, ?)', [id, pw, username], (error, results, fields) => {
     if (error) throw error;
   });
 };
-
 module.exports.idCheck = (id, cb) => {
   pool.query('SELECT id FROM user WHERE id=?', [id], (error, results, fields) => {
     if (error) throw error;
@@ -63,4 +60,15 @@ module.exports.idCheck = (id, cb) => {
       return cb(false);
     }
   });
+}
+module.exports.getVideos = () => {
+  return new Promise((resolve, reject) => {
+    pool.query('SELECT * FROM videos', (error, results, fields) => {
+      if (error) throw error;
+      resolve(results);
+    });
+  });
+}
+module.exports.addVideo = (name, user) => {
+  pool.query('INSERT INTO videos VALUES (?, ?)', [name, user]);
 }
