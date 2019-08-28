@@ -70,5 +70,7 @@ module.exports.getVideos = () => {
   });
 }
 module.exports.addVideo = (name, user) => {
-  pool.query('INSERT INTO videos VALUES (?, ?)', [name, user]);
+  pool.query('INSERT INTO videos VALUES (?, ?)', [name, user], (error, results, fields) => {
+    if (error) throw error;
+  });
 }
